@@ -1,5 +1,5 @@
 #include<iostream>
-#include<vector>
+// #include<vector>
 #include<unistd.h>//Sleep Function
 #include"MyQueue.cpp"
 #include"MyStack.cpp"
@@ -145,19 +145,19 @@ class VIP:public Stadium{
         }
 
         void Calculate_Worst_Item(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+6);
             int RandomNumber=rand()%7;
             BadItem=Items[0][RandomNumber];
         }
 
         void Calculate_Worst_Song(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+6);
             int RandomNumber=rand()%7;
             BadSong=Songs[0][RandomNumber];
         }
 
         void Calculate_Worst_Food(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+9);
             int RandomNumber=rand()%9;
             BadFood=Foods[0][RandomNumber];
         }
@@ -260,20 +260,20 @@ class FirstClass:public Stadium{
         }
 
         void Calculate_Worst_Item(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+6);
             int RandomNumber=rand()%7;
             BadItem=Items[0][RandomNumber];
 
         }
 
         void Calculate_Worst_Song(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+6);
             int RandomNumber=rand()%7;
             BadSong=Songs[0][RandomNumber];
         }
 
         void Calculate_Worst_Food(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+9);
             int RandomNumber=rand()%9;
             BadFood=Foods[0][RandomNumber];
         }
@@ -378,19 +378,19 @@ class General:public Stadium{
         }
 
         void Calculate_Worst_Item(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+6);
             int RandomNumber=rand()%7;
             BadItem=Items[0][RandomNumber];
         }
 
         void Calculate_Worst_Song(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+6);
             int RandomNumber=rand()%7;
             BadSong=Songs[0][RandomNumber];
         }
 
         void Calculate_Worst_Food(){
-            srand(time(nullptr)+ID);
+            srand(time(nullptr)+ID+9);
             int RandomNumber=rand()%9;
             BadFood=Foods[0][RandomNumber];
         }
@@ -979,10 +979,10 @@ class Cricket_Simulation{
             int a=0;
             abc:
             srand(time(nullptr));
-            Team1=rand()%5;//Address
+            Team1=rand()%18;//Address
 
             srand((time(nullptr))+a);
-            Team2=rand()%5;//Address
+            Team2=rand()%18;//Address
             if(Team1==Team2){
                 a++;
                 goto abc;
