@@ -508,7 +508,7 @@ class Cricket_Managment_System{
                 }
             }
             bara=Items[1][0];
-            BestItem=Items[1][1];
+            BestItem=Items[0][1];
             size=(sizeof(Items)/sizeof(Items[0][0]))/2;
             for(int i=0;i<size;i++){
                 if(bara<Items[1][i]){
