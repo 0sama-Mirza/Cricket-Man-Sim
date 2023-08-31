@@ -7,6 +7,7 @@ int Total_Attendees=0;
 #include"CustomBST.cpp"
 #include<string>
 #include<fstream>
+#include<random>
 
 using namespace std;
 const int Total_Stadium_Capacity=2500;
@@ -50,6 +51,22 @@ class Stadium{
         string BadDrink;
         MyStack<string> Participants_List;
     public:
+        Stadium()
+        : ID(0),
+          Capacity(0),
+          MoneySpent(0),
+          TicketPrice(0), // Add initialization for TicketPrice
+          CountryName(""), // Add initialization for string members
+          FavFood(""),
+          FavItem(""),
+          FavSong(""),
+          BadItem(""),
+          BadSong(""),
+          BadFood(""),
+          FavDrink(""),
+          BadDrink(""),
+          Participants_List() {}
+        virtual ~Stadium() {} // Virtual destructor
         virtual void Store_Name_In_Queue()=0;
         virtual void Insert_Names_In_Tree()=0;
         virtual void Calculate_MoneySpent()=0;
@@ -79,7 +96,7 @@ class VIP:public Stadium{
         void Insert_Names_In_Tree(){
             string naam=Participants_List.gettop();
             string comeon="";
-            for(int i=0;i<=naam.length()-2;i++)
+            for(size_t i=0;i<=naam.length()-2;i++)
                 comeon=comeon+naam[i];
             VIP_Data.insert(ID,comeon,MoneySpent,CountryName,FavFood,FavItem,FavSong,BadItem,BadSong,BadFood);
             ID--;
@@ -101,8 +118,12 @@ class VIP:public Stadium{
         }
 
         void Calculate_Fav_Drink(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%9;//0=value ;;;;;; 1=Vote
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%9;//[0]=value ;; [1]=Vote
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             int Current_Votes=stoi(Drinks[1][RandomNumber]);
             Current_Votes++;
             string String_Of_CurrentVotes = to_string(Current_Votes);
@@ -110,13 +131,22 @@ class VIP:public Stadium{
         }
 
         void Calculate_MoneySpent(){
-            srand(time(nullptr)+ID);
-            MoneySpent=rand()%10000;
+            // srand(time(NULL)+ID);
+            // MoneySpent=rand()%10000;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 9999); // Range: 0 to 9999
+            MoneySpent = dist(gen);
         }
 
         void Decide_Country(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%196;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%196;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 195); // Range: 0 to 195
+            int RandomNumber = dist(gen);
+
             CountryName=Country[0][RandomNumber];
             int Current_Votes=stoi(Country[1][RandomNumber]);
             Current_Votes++;
@@ -125,8 +155,12 @@ class VIP:public Stadium{
         }
 
         void Calculate_Fav_Item(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             FavItem=Items[0][RandomNumber];
             int Current_Votes=stoi(Items[1][RandomNumber]);
             Current_Votes++;
@@ -135,8 +169,12 @@ class VIP:public Stadium{
         }
 
         void Calculate_Fav_Song(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             FavSong=Songs[0][RandomNumber];
             int Current_Votes=stoi(Songs[1][RandomNumber]);
             Current_Votes++;
@@ -145,26 +183,42 @@ class VIP:public Stadium{
         }
 
         void Calculate_Worst_Item(){
-            srand(time(nullptr)+ID+6);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID+6);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             BadItem=Items[0][RandomNumber];
         }
 
         void Calculate_Worst_Song(){
-            srand(time(nullptr)+ID+6);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID+6);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             BadSong=Songs[0][RandomNumber];
         }
 
         void Calculate_Worst_Food(){
-            srand(time(nullptr)+ID+9);
-            int RandomNumber=rand()%9;
+            // srand(time(nullptr)+ID+9);
+            // int RandomNumber=rand()%9;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             BadFood=Foods[0][RandomNumber];
         }
 
         void Calculate_Fav_Food(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%9;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%9;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             FavFood=Foods[0][RandomNumber];
             int Current_Votes=stoi(Foods[1][RandomNumber]);
             Current_Votes++;
@@ -208,7 +262,7 @@ class FirstClass:public Stadium{
         void Insert_Names_In_Tree(){
             string naam=Participants_List.gettop();
             string comeon="";
-            for(int i=0;i<=naam.length()-2;i++)
+            for(size_t i=0;i<=naam.length()-2;i++)
                 comeon=comeon+naam[i];
             FirstClass_Data.insert(ID,comeon,MoneySpent,CountryName,FavFood,FavItem,FavSong,BadItem,BadSong,BadFood);
             ID--;
@@ -216,13 +270,21 @@ class FirstClass:public Stadium{
         }
 
         void Calculate_MoneySpent(){
-            srand(time(nullptr)+ID);
-            MoneySpent=rand()%5000;
+            // srand(time(nullptr)+ID);
+            // MoneySpent=rand()%5000;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 5000); // Range: 0 to 5000
+            MoneySpent = dist(gen);
         }
 
         void Calculate_Fav_Item(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             FavItem=Items[0][RandomNumber];
             int Current_Votes=stoi(Items[1][RandomNumber]);
             Current_Votes++;
@@ -231,8 +293,12 @@ class FirstClass:public Stadium{
         }
 
         void Decide_Country(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%196;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%196;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 195); // Range: 0 to 195
+            int RandomNumber = dist(gen);
             CountryName=Country[0][RandomNumber];
             int Current_Votes=stoi(Country[1][RandomNumber]);
             Current_Votes++;
@@ -241,8 +307,12 @@ class FirstClass:public Stadium{
         }
 
        void Calculate_Fav_Song(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             FavSong=Songs[0][RandomNumber];
             int Current_Votes=stoi(Songs[1][RandomNumber]);
             Current_Votes++;
@@ -251,8 +321,12 @@ class FirstClass:public Stadium{
         }
 
         void Calculate_Fav_Drink(){
-            srand(time(nullptr));
-            int RandomNumber=rand()%9;//0=value ;;;;;; 1=Vote
+            // srand(time(nullptr));
+            // int RandomNumber=rand()%9;//[0]=value ;; [1]=Vote
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             int Current_Votes=stoi(Drinks[1][RandomNumber]);
             Current_Votes++;
             string String_Of_CurrentVotes = to_string(Current_Votes);
@@ -260,27 +334,43 @@ class FirstClass:public Stadium{
         }
 
         void Calculate_Worst_Item(){
-            srand(time(nullptr)+ID+6);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID+6);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);            
             BadItem=Items[0][RandomNumber];
 
         }
 
         void Calculate_Worst_Song(){
-            srand(time(nullptr)+ID+6);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID+6);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             BadSong=Songs[0][RandomNumber];
         }
 
         void Calculate_Worst_Food(){
-            srand(time(nullptr)+ID+9);
-            int RandomNumber=rand()%9;
+            // srand(time(nullptr)+ID+9);
+            // int RandomNumber=rand()%9;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 9); // Range: 0 to 9
+            int RandomNumber = dist(gen);
             BadFood=Foods[0][RandomNumber];
         }
 
         void Calculate_Fav_Food(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%9;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%9;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             FavFood=Foods[0][RandomNumber];
             int Current_Votes=stoi(Foods[1][RandomNumber]);
             Current_Votes++;
@@ -324,7 +414,7 @@ class General:public Stadium{
         void Insert_Names_In_Tree(){
             string naam=Participants_List.gettop();
             string comeon="";
-            for(int i=0;i<=naam.length()-2;i++)
+            for(size_t i=0;i<=naam.length()-2;i++)
                 comeon=comeon+naam[i];
             General_Data.insert(ID,comeon,MoneySpent,CountryName,FavFood,FavItem,FavSong,BadItem,BadSong,BadFood);
             ID--;
@@ -333,13 +423,21 @@ class General:public Stadium{
         }
 
         void Calculate_MoneySpent(){
-            srand(time(nullptr)+ID);
-            MoneySpent=rand()%1000;
+            // srand(time(nullptr)+ID);
+            // MoneySpent=rand()%1000;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 1000); // Range: 0 to 1000
+            MoneySpent = dist(gen);
         }
 
         void Calculate_Fav_Item(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             FavItem=Items[0][RandomNumber];
             int Current_Votes=stoi(Items[1][RandomNumber]);
             Current_Votes++;
@@ -348,9 +446,12 @@ class General:public Stadium{
         }
 
         void Decide_Country(){
-            srand(time(nullptr));
-             srand(time(nullptr)+ID);
-            int RandomNumber=rand()%196;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%196;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 195); // Range: 0 to 195
+            int RandomNumber = dist(gen);
             CountryName=Country[0][RandomNumber];
             int Current_Votes=stoi(Country[1][RandomNumber]);
             Current_Votes++;
@@ -359,8 +460,12 @@ class General:public Stadium{
         }
 
         void Calculate_Fav_Song(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             FavSong=Songs[0][RandomNumber];
             int Current_Votes=stoi(Songs[1][RandomNumber]);
             Current_Votes++;
@@ -369,8 +474,12 @@ class General:public Stadium{
         }
 
         void Calculate_Fav_Drink(){
-            srand(time(nullptr));
-            int RandomNumber=rand()%9;//0=value ;;;;;; 1=Vote
+            // srand(time(nullptr));
+            // int RandomNumber=rand()%9;//[0]=value ;; [1]=Vote
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             int Current_Votes=stoi(Drinks[1][RandomNumber]);
             Current_Votes++;
             string String_Of_CurrentVotes = to_string(Current_Votes);
@@ -378,26 +487,42 @@ class General:public Stadium{
         }
 
         void Calculate_Worst_Item(){
-            srand(time(nullptr)+ID+6);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID+6);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             BadItem=Items[0][RandomNumber];
         }
 
         void Calculate_Worst_Song(){
-            srand(time(nullptr)+ID+6);
-            int RandomNumber=rand()%7;
+            // srand(time(nullptr)+ID+6);
+            // int RandomNumber=rand()%7;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 6); // Range: 0 to 6
+            int RandomNumber = dist(gen);
             BadSong=Songs[0][RandomNumber];
         }
 
         void Calculate_Worst_Food(){
-            srand(time(nullptr)+ID+9);
-            int RandomNumber=rand()%9;
+            // srand(time(nullptr)+ID+9);
+            // int RandomNumber=rand()%9;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             BadFood=Foods[0][RandomNumber];
         }
 
         void Calculate_Fav_Food(){
-            srand(time(nullptr)+ID);
-            int RandomNumber=rand()%9;
+            // srand(time(nullptr)+ID);
+            // int RandomNumber=rand()%9;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 8); // Range: 0 to 8
+            int RandomNumber = dist(gen);
             FavFood=Foods[0][RandomNumber];
             int Current_Votes=stoi(Foods[1][RandomNumber]);
             Current_Votes++;
@@ -421,7 +546,21 @@ class Cricket_Managment_System{
         string BadFood,BadItem,BadDrink,BadSong;
         string VIP_Country,FirstClass_Country,General_Country;
     public:
-        Cricket_Managment_System(){
+        Cricket_Managment_System ()
+         : size(0),
+           bara("Big Country"),
+           BestFood("BestFood"),
+           BestItem("BestItem"),
+           BestDrink("BestDrink"),
+           BestSong("BestSong"),
+           BadFood("BadFood"),
+           BadItem("BadItem"),
+           BadDrink("BadDrink"),
+           BadSong("BadSong"),
+           VIP_Country("VIP_Country"),
+           FirstClass_Country("FirstClass_Country"),
+           General_Country("General_Country")
+           {
             for(int i=0;i<=195;i++){
                 Country[1][i]="0";
             }
@@ -680,19 +819,43 @@ class Cricket_Simulation{
         string Second_Batsman;
         int Limit_Of_Wide_And_NoBall;
         int Count_Of_Wide_And_NoBall;
-        int More_Random_Count;
     public:
-        Cricket_Simulation(){
-            More_Random_Count=0;
-            Limit_Of_Wide_And_NoBall=20;
-            Count_Of_Wide_And_NoBall=0;
-            Current_Overs=0;
-            Runs=0;
-            Score1=0;
-            Score2=0;
-            Out=0;
-            Overs=5;
-            Balls=0;
+        Cricket_Simulation()
+        :   Australia(),
+            England(),
+            NewZealand(),
+            Pakistan(),
+            India(),
+            Afghanistan(),
+            Kenya(),
+            WestInDies(),
+            Zimbabwe(),
+            SriLanka(),
+            Bangladesh(),
+            SouthAfrica(),
+            NetherLands(),
+            IreLand(),
+            Nepal(),
+            ScotLand(),
+            HongKong(),
+            UAE(),
+            Country2(),
+            Country1(),
+            Team1(0),
+            Team2(0),
+            Overs(5),
+            BatOrBall(0),
+            Out(0),
+            Runs(0),
+            Score1(0),
+            Score2(0),
+            Balls(0),
+            Current_Overs(0),
+            Opening_Batsman(""),
+            Second_Batsman(""),
+            Limit_Of_Wide_And_NoBall(20),
+            Count_Of_Wide_And_NoBall(0)
+        {
             Australia.Enqueue("David Warner");
             Australia.Enqueue("Usman Khawaja");
             Australia.Enqueue("Aaroan Finch(C)");
@@ -892,7 +1055,6 @@ class Cricket_Simulation{
             UAE.Enqueue("Adhitya Shetty");
             UAE.Enqueue("Sabir Ali");
             UAE.Enqueue("Zahoor Khan");
-
         }
 
         queue<string> Country1_Playing_Queue(){
@@ -978,11 +1140,19 @@ class Cricket_Simulation{
         void Random_Match_Selector(){   //
             int a=0;
             abc:
-            srand(time(nullptr));
-            Team1=rand()%18;//Address
+            // srand(time(nullptr));
+            // Team1=rand()%18;//Address
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 17); // Range: 0 to 17
+            Team1 = dist(gen);
 
-            srand((time(nullptr))+a);
-            Team2=rand()%18;//Address
+            // srand((time(nullptr))+a);
+            // Team2=rand()%18;//Address
+            random_device rd2;
+            mt19937 gen2(rd2());
+            uniform_int_distribution<int> dist2(0, 17); // Range: 0 to 17
+            Team2 = dist2(gen2);
             if(Team1==Team2){
                 a++;
                 goto abc;
@@ -991,8 +1161,12 @@ class Cricket_Simulation{
         }
         
         int Toss(){
-            srand(time(nullptr));
-            int HT=rand()%1;
+            // srand(time(nullptr));
+            // int HT=rand()%1;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 1); // Range: 0 to 1
+            int HT = dist(gen);
             if(HT==0)
                 return HT=Team1;
             else
@@ -1000,15 +1174,22 @@ class Cricket_Simulation{
         }
         
         int Bat_Ball(){
-            srand(time(nullptr));
-            int BatOrBall=rand()%2;//0=Ball     1=Bat
+            // srand(time(nullptr));
+            // int BatOrBall=rand()%2;//0=Ball     1=Bat
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 1); // Range: 0 to 1
+            int BatOrBall = dist(gen);
             return BatOrBall;
         }
         
         int Scores(){//Determines What Score/Hits will the player play
-            srand(time(nullptr)+More_Random_Count);
-            int Hit=rand()%12;
-            More_Random_Count++;
+            // srand(time(nullptr));
+            // int Hit=rand()%12;
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dist(0, 11); // Range: 0 to 11
+            int Hit = dist(gen);
             return Hit;
         }
         
@@ -1032,7 +1213,7 @@ class Cricket_Simulation{
         bool Batting(){
             string Batsman;
             int Mara=Scores();
-            if(Count_Of_Wide_And_NoBall>=Limit_Of_Wide_And_NoBall&&Mara==6||Mara==7){
+            if((Count_Of_Wide_And_NoBall>=Limit_Of_Wide_And_NoBall)&&(Mara==6||Mara==7)){
                 return false;
             }
             if(Balls==6){

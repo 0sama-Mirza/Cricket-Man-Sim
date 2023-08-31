@@ -20,21 +20,20 @@ class Node{
         T BadFood;
         Node *Left,*Right;     
     public:
-        Node(int id,T nam,int money,T country,T favfood, T favItem,T favSong,T baditem,T badsong,T badfood){
-            Name=nam;
-            MoneySpent=money;
-            ID=id;
-            CountryName=country;
-            FavFood=favfood;
-            FavItem=favItem;
-            FavSong=favSong;
-            BadItem=baditem;
-            BadSong=badsong;
-            BadFood=badfood;
-            Left=NULL;
-            Right=NULL;
-            height=0;
-        }
+        Node(int id,T nam,int money,T country,T favfood, T favItem,T favSong,T baditem,T badsong,T badfood):
+            height(0),
+            Name(nam),
+            ID(id),
+            MoneySpent(money),
+            CountryName(country),
+            FavFood(favfood),
+            FavItem(favItem),
+            FavSong(favSong),
+            BadItem(baditem),
+            BadSong(badsong),
+            BadFood(badfood),
+            Left(nullptr),
+            Right(nullptr){}
         Node* GetLeft(){
             return Left;
         }
@@ -97,10 +96,10 @@ class bst{
         Node<U>* Root,*Current;//The Current Pointer is only used for searching and displaying.
         stack<int>s;      
         Node<U>* add(int id,U nam,int money,U country,U favfood,U favItem,U favSong,U baditem,U badsong,U badfood,Node<U>* SubRoot){//SubRoot Pointer exists only to insert the values.
-            if(Root==NULL){     //This will only run 1st time......     
+            if(Root==nullptr){     //This will only run 1st time......     
                 return Root = new Node<U>(id,nam, money,country,favfood,favItem,favSong,baditem,badsong,badfood);//.....
             }                   //just to make Root pointer = first node.
-            if(SubRoot==NULL){     //This Will Make a node whenever the currently selected node's                                     
+            if(SubRoot==nullptr){     //This Will Make a node whenever the currently selected node's                                     
                 return new Node<U>(id,nam,money,country,favfood, favItem,favSong, baditem, badsong, badfood);//Left Or Right Side becomes Empty.
             }
             else if(money<SubRoot->GetMoneySpent()){   //This will move our SubRoot Pointer to the left if 
@@ -155,7 +154,7 @@ class bst{
             return Temp;
         }
         void inorderrr(Node<U>* t){
-            if(t==NULL)
+            if(t==nullptr)
                 return;
             inorderrr(t->GetLeft());
             cout<<"--------------------------------------------------------------------------------"<<endl;
@@ -163,7 +162,7 @@ class bst{
             inorderrr(t->GetRight());
         }
         void prr(Node<U>* t){
-            if(t==NULL)
+            if(t==nullptr)
                 return;
             prr(t->GetRight());
             cout<<"--------------------------------------------------------------------------------"<<endl;
@@ -172,31 +171,31 @@ class bst{
             
         }
         void post(Node<U>* t){
-            if(t==NULL)
+            if(t==nullptr)
                 return;
             prr(t->GetLeft());
             cout<<t->GetID()<<",";
             prr(t->GetRight());
         }
         Node<U>* minn(Node<U>* t){
-            if(t==NULL)
-                return NULL;
-            else if(t->GetLeft()==NULL)
+            if(t==nullptr)
+                return nullptr;
+            else if(t->GetLeft()==nullptr)
                 return t;
             else
                 return minn(t->GetLeft());
         }
         Node<U>* maxx(Node<U>* t){
-            if(t==NULL)
-                return NULL;
-            else if(t->GetRight()==NULL)
+            if(t==nullptr)
+                return nullptr;
+            else if(t->GetRight()==nullptr)
                 return t;
             else
                 return maxx(t->GetRight());
         }
         Node<U>* Searchh(Node<U>* SubRoot,U value){
-            if(SubRoot==NULL)
-                return NULL;
+            if(SubRoot==nullptr)
+                return nullptr;
             if(SubRoot->GetID()==value)
                 return SubRoot;
             if(SubRoot->GetID()>value)
@@ -204,19 +203,19 @@ class bst{
             return Searchh(SubRoot->GetRight(),value);
         }
         int counter(Node<U>* SubRoot){
-            if(SubRoot==NULL)
+            if(SubRoot==nullptr)
                 return 0;
             return counter(SubRoot->GetLeft())+counter(SubRoot->GetRight())+1;
         }
         int TotalDepth(Node<U>* SubRoot){
-            if(SubRoot==NULL)
+            if(SubRoot==nullptr)
                 return 0;
             int LeftHight=TotalDepth(SubRoot->GetLeft());
             int RightHight=TotalDepth(SubRoot->GetRight());
             return max(LeftHight,RightHight)+1;
         }
         int Get_Balance_Factor(Node<U> *SubRoot){
-            if(SubRoot==NULL)
+            if(SubRoot==nullptr)
                 return 0;
             else
                 return (TotalDepth(SubRoot->GetLeft())-TotalDepth(SubRoot->GetRight()));
@@ -227,12 +226,12 @@ class bst{
             else if(v>SubRoot->GetID())
                 SubRoot->SetRight(Khatm(SubRoot->GetRight(),v));
             else{
-                if(SubRoot->GetLeft()==NULL){//If It has One Child at Left.
+                if(SubRoot->GetLeft()==nullptr){//If It has One Child at Left.
                     Node<U>* Temp=SubRoot->GetRight();
                     delete SubRoot;
                     return Temp;
                 }
-                if(SubRoot->GetRight()==NULL){//If It has One Child at Right.
+                if(SubRoot->GetRight()==nullptr){//If It has One Child at Right.
                     Node<U>* Temp=SubRoot->GetLeft();
                     delete SubRoot;
                     return Temp;
@@ -256,7 +255,7 @@ class bst{
         }
 
         void Going_Inorder_For_CSV(Node<U>* t,string FileName){
-            if(t==NULL)
+            if(t==nullptr)
                 return;
             Going_Inorder_For_CSV(t->GetLeft(),FileName);
             Write_Data_To_CSVFile(t,FileName);    
@@ -264,15 +263,13 @@ class bst{
             // Write_Data_To_CSVFile(t,FileName);
         }
     public:
-        bst(){
-            Root=NULL;
-        }
+        bst(): Root(nullptr), Current(nullptr),s(){}
         void insert(int id,U nam,int money,U country,U favfood,U favItem,U favSong,U baditem,U badsong,U badfood){
             s.push(id);
             add(id,nam,money,country,favfood,favItem,favSong,baditem,badsong,badfood,Root);
         }
         void Search(int v){
-            if(Searchh(Root,v)==NULL){
+            if(Searchh(Root,v)==nullptr){
                 std::cout<<"This Value Doesnot exist."<<std::endl;
             }
             else

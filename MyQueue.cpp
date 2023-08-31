@@ -9,6 +9,7 @@ class node{
         node* next;
         T data;
     public:
+        node() : next(nullptr), data(){}
         node<T> *GetNext(){
             return next;
         }
@@ -32,16 +33,12 @@ class queue{
         node<Q>* current;
         int count;
     public:
-        queue(){
-            front=NULL;
-            rear=NULL;
-            count=0;
-        }
+        queue() : front(nullptr), rear(nullptr), current(nullptr), count(0){}
         void Enqueue(Q value){
             node<Q>* temp=new node<Q>;
             temp->SetData(value);
-            if(front==NULL){
-                temp->SetNext(NULL);
+            if(front==nullptr){
+                temp->SetNext(nullptr);
                 front=temp;
                 rear=temp;
             }
@@ -64,7 +61,7 @@ class queue{
             return front->GetData();
         }
         bool IsEmpty(){
-            if(front==NULL)
+            if(front==nullptr)
                 return true;
             else
                 return false;

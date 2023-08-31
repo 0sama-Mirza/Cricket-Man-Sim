@@ -10,6 +10,7 @@ class MyNode{
         MyNode* next;
         T data;
     public:
+        MyNode(): next(nullptr), data() {}
         MyNode<T> *GetNext(){
             return next;
         }
@@ -31,16 +32,12 @@ class MyStack{
         MyNode<A>* current;
         int count;
     public:
-        MyStack<A>(){
-            top=NULL;
-            current=NULL;
-            count=0;
-        }
+        MyStack<A>(): top(nullptr), current(nullptr), count(0){}
         void insert(A value){
             MyNode<A>* temp=new MyNode<A>;
             temp->SetData(value);
-            if(top==NULL){
-                temp->SetNext(NULL);
+            if(top==nullptr){
+                temp->SetNext(nullptr);
                 top=temp;
             }
             else{
@@ -60,7 +57,7 @@ class MyStack{
                 cout<<"There Are No Participants!"<<endl;
         }
         bool IsEmpty(){
-            if(top==NULL)
+            if(top==nullptr)
                 return true;
             else
                 return false;
@@ -71,7 +68,7 @@ class MyStack{
             else{
                 current=top;
                 cout<<"|";
-                while(current->next!=NULL){
+                while(current->next!=nullptr){
                     cout<<current->data<<"|"<<endl<<"|";
                     current=current->next;
                 }
