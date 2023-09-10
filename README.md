@@ -2,9 +2,9 @@
 Cricket Simulation And Cricket Stadium Managment System
 # ScreenShots:
 
-![Match Started](./img/image.png)
+![Match Started](./Resources/img/image.png)
 
-![Match Concluded](./img/image-1.png)
+![Match Concluded](./Resources/img/image-1.png)
 
 # This Project Used Template Classes. 
 ## The implementation of template classes are inside `Templates` folder. 

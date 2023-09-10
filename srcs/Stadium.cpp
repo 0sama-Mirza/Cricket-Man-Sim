@@ -145,7 +145,7 @@ void Stadium::Insert_Names_In_Tree() {
 
 void Stadium::Store_Name_In_Queue() {
     std::fstream MyFile;
-    MyFile.open("../Audiance-Data/"+GetFileName()+".txt",std::ios::in);//Read Mode
+    MyFile.open("../Resources/Audiance-Data/"+GetFileName()+".txt",std::ios::in);//Read Mode
     if(MyFile.is_open()){
         std::string name;
         while(ID!=Capacity){
