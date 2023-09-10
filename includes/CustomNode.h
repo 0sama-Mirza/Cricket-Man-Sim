@@ -38,6 +38,6 @@ public:
     void SetValue(int id, T nam, int money, T country, T favfood, T favItem, T favSong, T baditem, T badsong, T badfood);
 };
 
-// #include "../srcs/CustomNode.cpp" // Include the source file
+#include "../Templates/CustomNode.cpp" // Include the source file
 
 #endif

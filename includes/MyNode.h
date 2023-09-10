@@ -18,6 +18,6 @@ public:
     void SetData(T a);
 };
 
-// #include "../srcs/MyNode.cpp" // Include the source file
+#include "../Templates/MyNode.cpp" // Include the source file
 
 #endif

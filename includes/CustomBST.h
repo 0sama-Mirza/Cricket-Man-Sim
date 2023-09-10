@@ -44,6 +44,6 @@ public:
     void Write_Data_To_CSV(std::string Filename);
 };
 
-// #include "../srcs/CustomBST.cpp" // Include the source file
+#include "../Templates/CustomBST.cpp" // Include the source file
 
 #endif

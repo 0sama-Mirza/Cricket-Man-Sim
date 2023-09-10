@@ -21,6 +21,6 @@ public:
     void print();
 };
 
-// #include "../srcs/MyQueue.cpp" // Include the source file
+#include "../Templates/MyQueue.cpp" // Include the source file
 
 #endif

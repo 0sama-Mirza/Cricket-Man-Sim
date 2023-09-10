@@ -20,6 +20,6 @@ public:
     A gettop();
 };
 
-// #include "../srcs/MyStack.cpp" // Include the source file
+#include "../Templates/MyStack.cpp" // Include the source file
 
 #endif
