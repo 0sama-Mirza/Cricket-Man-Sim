@@ -246,19 +246,30 @@ int bst<U>::count(){
 }
 
 template <class U>
-void bst<U>::minvalue(){
-    std::cout<<"-------------------------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"#ID \tName \t\t\tMoney Spent($$) \tCountry"<<std::endl;
-    std::cout<<minn(Root)->GetID()<<" \t"<<minn(Root)->GetName()<<"\t\t\t"<<minn(Root)->GetMoneySpent()<<" \t\t"<<minn(Root)->GetCountryName()<<std::endl;
-    std::cout<<"------------------------------------------------------------------------------------------"<<std::endl;
+void bst<U>::minvalue() {
+    Node<U>* minNode = minn(Root);
+    if (minNode) {
+        std::cout << "-------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << "#ID \tName \t\t\tMoney Spent($$) \tCountry" << std::endl;
+        std::cout << minNode->GetID() << " \t" << minNode->GetName() << "\t\t\t" << minNode->GetMoneySpent() << " \t\t" << minNode->GetCountryName() << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------" << std::endl;
+    } else {
+        std::cout << "No minimum value found (Tree is empty)." << std::endl;
+    }
 }
+
 
 template <class U>
 void bst<U>::maxvalue(){
-    std::cout<<"-------------------------------------------------------------------------------------------"<<std::endl;
-    std::cout<<"#ID \tName \t\t\tMoney Spent($$) \tCountry"<<std::endl;
-    std::cout<<maxx(Root)->GetID()<<" \t"<<maxx(Root)->GetName()<<"\t\t"<<maxx(Root)->GetMoneySpent()<<" \t\t"<<maxx(Root)->GetCountryName()<<std::endl;
-    std::cout<<"-------------------------------------------------------------------------------------------"<<std::endl;
+    Node<U>* maxNode = maxx(Root);
+    if (maxNode) {
+        std::cout << "-------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << "#ID \tName \t\t\tMoney Spent($$) \tCountry" << std::endl;
+        std::cout << maxNode->GetID() << " \t" << maxNode->GetName() << "\t\t" << maxNode->GetMoneySpent() << " \t\t" << maxNode->GetCountryName() << std::endl;
+        std::cout << "-------------------------------------------------------------------------------------------" << std::endl;
+    } else {
+        std::cout << "No maximum value found (Tree is empty)." << std::endl;
+    }
 }
 
 template <class U>
