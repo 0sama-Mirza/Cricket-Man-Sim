@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/home/baymax/Git-Projects/Cricket-Man-Sim/srcs",
-      "program": "/home/baymax/Git-Projects/Cricket-Man-Sim/srcs/build/Release/outRelease",
+      "program": "/home/baymax/Git-Projects/Cricket-Man-Sim/srcs/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

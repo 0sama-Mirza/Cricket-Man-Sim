@@ -1,6 +1,9 @@
 #ifndef BST_H
 #define BST_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include "CustomNode.h" // Include the Node class header
 #include<stack>
 #include<iostream>
@@ -46,4 +49,5 @@ public:
 
 #include "../Templates/CustomBST.cpp" // Include the source file
 
+#pragma GCC diagnostic pop
 #endif

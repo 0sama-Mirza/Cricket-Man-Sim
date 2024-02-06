@@ -1,6 +1,9 @@
 #ifndef MYNODE_H
 #define MYNODE_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 template<class T>
 class MyNode {
     template<typename U>
@@ -20,4 +23,5 @@ public:
 
 #include "../Templates/MyNode.cpp" // Include the source file
 
+#pragma GCC diagnostic pop
 #endif
