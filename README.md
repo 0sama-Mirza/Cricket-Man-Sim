@@ -1,5 +1,5 @@
 # Cricket-Man-Sim
-Cricket Simulation And Cricket Stadium Managment System
+Cricket Simulation And Cricket Stadium Management System
 # ScreenShots:
 
 ![Match Started](./Resources/img/image.png)
